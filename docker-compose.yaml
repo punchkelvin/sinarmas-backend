@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  # 1 Container with 6 database
+    ## My pc might not be strong enough for 
+    ## 6 separate docker container for database + 6 container for services  
+  mysql-db:
+    image: mysql:8.0
+    container_name: mysql-db
+    ports:
+      - "${AUTH_DB_HOST_PORT}:${AUTH_DB_DOCKER_PORT}"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql

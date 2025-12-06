@@ -1,0 +1,18 @@
+# --- Root Level Specifics ---
+.idea/
+*.iws
+*.iml
+.gradle/
+build/
+out/
+
+# --- Secrets---
+creds.env
+.env
+*.secret
+
+# --- Global Java Ignores ---
+*.class
+*.log
+*.jar
+*.war
