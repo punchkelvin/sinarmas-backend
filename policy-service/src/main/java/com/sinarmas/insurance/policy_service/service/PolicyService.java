@@ -89,4 +89,33 @@ public class PolicyService {
         }
         return policyResponseDto;
     }
+
+    public BaseResponseDto activatePolicy(Long id) {
+
+        BaseResponseDto policyResponseDto = BaseResponseDto
+                .builder()
+                .statusCode(CommonConstants.SUCCESS_CODE)
+                .statusMessage(CommonConstants.SUCCESS_MESSAGE)
+                .message(CommonConstants.SUCCESS_MESSAGE)
+                .createdDate(LocalDateTime.now())
+                .build();
+
+        try {
+            Policy policy = policyRepository.findById(id)
+                    .orElseThrow(() -> new EntityNotFoundException("Policy Not Found"));
+
+            policy.setStatus(PolicyStatus.ACTIVE);
+            policyRepository.save(policy);
+
+            policyResponseDto.setData(policy);
+
+
+        } catch (Exception e) {
+            policyResponseDto.setMessage(e.getMessage());
+            policyResponseDto.setStatusMessage(CommonConstants.FAIL_MESSAGE);
+            policyResponseDto.setStatusCode(CommonConstants.FAIL_CODE);
+        }
+
+        return policyResponseDto;
+    }
 }

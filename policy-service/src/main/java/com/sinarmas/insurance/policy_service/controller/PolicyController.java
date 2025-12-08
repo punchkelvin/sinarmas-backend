@@ -38,4 +38,16 @@ public class PolicyController {
         return ResponseEntity.ok().body(baseResponseDto);
     }
 
+    @PutMapping("/activate/{id}")
+    public ResponseEntity<BaseResponseDto> activatePolicy(@PathVariable Long id) {
+        BaseResponseDto baseResponseDto = policyService.activatePolicy(id);
+
+        if(baseResponseDto.getStatusCode().equals(CommonConstants.FAIL_CODE)) {
+            return ResponseEntity.badRequest().body(baseResponseDto);
+        }
+
+        return ResponseEntity.ok().body(baseResponseDto);
+
+    }
+
 }

@@ -10,6 +10,8 @@ public class CommonConstants {
     public static final String HEALTH = "HEALTH";
     public static final String LIFE = "LIFE";
 
+    public static final String BANK_TRANSFER = "BANK_TRANSFER";
+
     public static final String SUCCESS_MESSAGE = "SUCCESS";
     public static final String SUCCESS_CODE = "00";
     public static final String FAIL_MESSAGE = "FAIL";
