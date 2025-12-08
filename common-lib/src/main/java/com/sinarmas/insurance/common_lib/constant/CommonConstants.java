@@ -17,5 +17,8 @@ public class CommonConstants {
     public static final String FAIL_MESSAGE = "FAIL";
     public static final String FAIL_CODE = "404";
 
+    public static final String ACTIVE = "ACTIVE";
+    public static final String SUBMITTED = "SUBMITTED";
+
 
 }
