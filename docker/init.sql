@@ -3,7 +3,6 @@ CREATE DATABASE IF NOT EXISTS customer_db;
 CREATE DATABASE IF NOT EXISTS policy_db;
 CREATE DATABASE IF NOT EXISTS payment_db;
 CREATE DATABASE IF NOT EXISTS claim_db;
-CREATE DATABASE IF NOT EXISTS auth_db;
 -- create new user with username app_user, @'%' allows the user to connect to the database from any ip address with pw sinarmas123
 CREATE USER 'app_user'@'%' IDENTIFIED BY 'sinarmas123';
 -- gives full power (crud) drop table, shut down server, delete data
