@@ -61,15 +61,10 @@ public class PolicyService {
         try {
             //customer service call
             CustomerDto customer = insuranceClient.getCustomerById(createPolicyRequestDto.getCustomerId());
-            if (customer == null) {
-                throw new RuntimeException("Customer ID " + createPolicyRequestDto.getCustomerId() + " not found.");
-            }
 
             //product service call
             ProductDto product = insuranceClient.getProductById(createPolicyRequestDto.getProductId());
-            if (product == null) {
-                throw new RuntimeException("Product ID " + createPolicyRequestDto.getProductId() + " not found.");
-            }
+
 
             // create policy
             Policy newPolicy = Policy.builder()
