@@ -2,7 +2,6 @@ rootProject.name = 'sinarmas-backend'
 
 include 'api-gateway'
 include 'product-service'
-include 'auth-service'
 include 'common-lib'
 include 'customer-service'
 include 'policy-service'

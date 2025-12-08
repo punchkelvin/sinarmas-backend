@@ -1,15 +1,151 @@
-version: '3.8'
+# version: '3.8'
 
 services:
-  # 1 Container with 6 database
-    ## My pc might not be strong enough for 
-    ## 6 separate docker container for database + 6 container for services  
+  #Database
   mysql-db:
     image: mysql:8.0
     container_name: mysql-db
     ports:
-      - "${AUTH_DB_HOST_PORT}:${AUTH_DB_DOCKER_PORT}"
+      - "${DB_HOST_PORT}:${DB_DOCKER_PORT}"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     volumes:
       - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - sinarmas-net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  #Services
+  # --- Product Service ---
+  product-service:
+    build: ./product-service
+    container_name: product-service
+    ports:
+      - "${PRODUCT_SERVICE_HOST_PORT}:${PRODUCT_SERVICE_DOCKER_PORT}" # Host Port : Container Port
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/${PRODUCT_DB_NAME}?allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+    networks:
+      - sinarmas-net
+
+    # --- Customer Service ---
+  customer-service:
+    build: ./customer-service
+    container_name: customer-service
+    ports:
+      - "${CUSTOMER_SERVICE_HOST_PORT}:${CUSTOMER_SERVICE_DOCKER_PORT}"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/${CUSTOMER_DB_NAME}?allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_SQL_INIT_MODE: always
+      SPRING_JPA_DEFER_DATASOURCE_INITIALIZATION: true
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+    networks:
+      - sinarmas-net
+
+
+    # --- Policy Service ---
+  policy-service:
+    build: ./policy-service
+    container_name: policy-service
+    ports:
+      - "${POLICY_SERVICE_HOST_PORT}:${POLICY_SERVICE_DOCKER_PORT}"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/${POLICY_DB_NAME}?allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_SQL_INIT_MODE: always
+      SPRING_JPA_DEFER_DATASOURCE_INITIALIZATION: true
+      SERVICE_PRODUCT_URL: http://product-service:${PRODUCT_SERVICE_DOCKER_PORT}
+      SERVICE_CUSTOMER_URL: http://customer-service:${CUSTOMER_SERVICE_DOCKER_PORT}
+    
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+      product-service:
+         condition: service_started
+      customer-service:
+         condition: service_started
+    networks:
+      - sinarmas-net
+
+
+    # --- Payment Service ---
+  payment-service:
+    build: ./payment-service
+    container_name: payment-service
+    ports:
+      - "${PAYMENT_SERVICE_HOST_PORT}:${PAYMENT_SERVICE_DOCKER_PORT}"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/${PAYMENT_DB_NAME}?allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      
+      SERVICE_POLICY_URL: http://policy-service:${POLICY_SERVICE_DOCKER_PORT}
+      
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+      policy-service:
+        condition: service_started
+    networks:
+      - sinarmas-net
+
+
+    # --- Claim Service ---
+  claim-service:
+    build: ./claim-service
+    container_name: claim-service
+    ports:
+      - "${CLAIM_SERVICE_HOST_PORT}:${CLAIM_SERVICE_DOCKER_PORT}"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/${CLAIM_DB_NAME}?allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SERVICE_POLICY_URL: http://policy-service:${POLICY_SERVICE_DOCKER_PORT}
+      
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+      policy-service:
+        condition: service_started
+    networks:
+      - sinarmas-net
+
+    # --- API Gateway ---
+  api-gateway:
+    build: ./api-gateway
+    container_name: api-gateway
+    ports:
+      - "${GATEWAY_SERVICE_HOST_PORT}:${GATEWAY_SERVICE_DOCKER_PORT}"
+    environment:
+      SERVER_PORT: ${GATEWAY_SERVICE_DOCKER_PORT}
+    depends_on:
+      - product-service
+      - customer-service
+      - policy-service
+      - payment-service
+      - claim-service
+    networks:
+      - sinarmas-net
+
+networks:
+  sinarmas-net:
+    driver: bridge
+    

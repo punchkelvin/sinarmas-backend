@@ -1,0 +1,56 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      server:
+        webflux:
+          globalcors:
+            cors-configurations:
+              '[/**]':
+                allowedOrigins: "*"
+                allowedMethods: "*"
+                allowedHeaders: "*"
+          routes:
+            # --- PRODUCT SERVICE ---
+            - id: product-service
+              uri: http://product-service:8082
+              predicates:
+                - Path=/api/v1/product/**
+              filters:
+                - AddRequestHeader=X-Customer-ID, 1
+
+            # --- CUSTOMER SERVICE ---
+            - id: customer-service
+              uri: http://customer-service:8083
+              predicates:
+                - Path=/api/v1/customer/**
+              filters:
+                - AddRequestHeader=X-Customer-ID, 1
+
+            # --- POLICY SERVICE ---
+            - id: policy-service
+              uri: http://policy-service:8084
+              predicates:
+                - Path=/api/v1/policy/**
+              filters:
+                - AddRequestHeader=X-Customer-ID, 1
+
+            # --- PAYMENT SERVICE ---
+            - id: payment-service
+              uri: http://payment-service:8085
+              predicates:
+                - Path=/api/v1/payment/**
+              filters:
+                - AddRequestHeader=X-Customer-ID, 1
+
+            # --- CLAIM SERVICE ---
+            - id: claim-service
+              uri: http://claim-service:8086
+              predicates:
+                - Path=/api/v1/claim/**
+              filters:
+                - AddRequestHeader=X-Customer-ID, 1
