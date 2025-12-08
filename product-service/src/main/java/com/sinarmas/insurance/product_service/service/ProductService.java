@@ -14,6 +14,7 @@ import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -90,6 +91,7 @@ public class ProductService {
 
     }
 
+    @Transactional
     public BaseResponseDto addProduct(AddProductRequestDto addProductRequestDto){
         BaseResponseDto productResponseDto = BaseResponseDto
                 .builder()
@@ -131,6 +133,7 @@ public class ProductService {
 
     }
 
+    @Transactional
     public BaseResponseDto updateProduct(Long id, UpdateProductRequestDto updateProductRequestDto){
         BaseResponseDto productResponseDto = BaseResponseDto
                 .builder()
@@ -169,7 +172,7 @@ public class ProductService {
     }
 
 
-
+    @Transactional
     public BaseResponseDto deleteProduct(Long id){
         BaseResponseDto productResponseDto = BaseResponseDto
                 .builder()

@@ -12,7 +12,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class CustomerDto {
     private Long id;
-
     private String fullName;
     private String nik;
     private String email;
