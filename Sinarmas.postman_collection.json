@@ -1,0 +1,603 @@
+{
+	"info": {
+		"_postman_id": "524d031a-0acc-4f5a-a752-55a00562a166",
+		"name": "Sinarmas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17821849"
+	},
+	"item": [
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Get All Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/product",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"product"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "null",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "null",
+									"disabled": true
+								},
+								{
+									"key": "role",
+									"value": "null",
+									"disabled": true
+								},
+								{
+									"key": "pageNumber",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/product/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"1"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "null",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "null",
+									"disabled": true
+								},
+								{
+									"key": "role",
+									"value": "null",
+									"disabled": true
+								},
+								{
+									"key": "pageNumber",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Family Future Secure2\",\r\n    \"basePremium\": 100.52,\r\n    \"coverageAmount\": 99999999.00,\r\n    \"currency\": \"IDR\",\r\n    \"insuranceType\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/product/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"1"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "null",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "null",
+									"disabled": true
+								},
+								{
+									"key": "role",
+									"value": "null",
+									"disabled": true
+								},
+								{
+									"key": "pageNumber",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Gold Standard Protection\",\r\n  \"basePremium\": 250.50,\r\n  \"coverageAmount\": 100000.00,\r\n  \"currency\": \"IDR\",\r\n  \"insuranceType\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/product",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"product"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "null",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "null",
+									"disabled": true
+								},
+								{
+									"key": "role",
+									"value": "null",
+									"disabled": true
+								},
+								{
+									"key": "pageNumber",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/product/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"4"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "null",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "null",
+									"disabled": true
+								},
+								{
+									"key": "role",
+									"value": "null",
+									"disabled": true
+								},
+								{
+									"key": "pageNumber",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Get Customer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/customer/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"customer",
+								"1"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "null",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "null",
+									"disabled": true
+								},
+								{
+									"key": "role",
+									"value": "null",
+									"disabled": true
+								},
+								{
+									"key": "pageNumber",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nik\": \"3171234567890021\",\r\n    \"fullName\": \"Budi Santoso2\",\r\n    \"email\": \"budi.santoso@example.com\",\r\n    \"phoneNumber\": \"081234567890\",\r\n    \"address\": \"Jl. Jendral Sudirman No. 10, Jakarta\",\r\n    \"dob\": \"1990-05-15\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/customer",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"customer"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Policy",
+			"item": [
+				{
+					"name": "Get Policy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/policy/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"policy",
+								"1"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "null",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "null",
+									"disabled": true
+								},
+								{
+									"key": "role",
+									"value": "null",
+									"disabled": true
+								},
+								{
+									"key": "pageNumber",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Policy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerId\": 2,\r\n    \"productId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/policy",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"policy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Activate Policy",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerId\": 2,\r\n    \"productId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/policy/activate/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"policy",
+								"activate",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment",
+			"item": [
+				{
+					"name": "Get Payment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/payment/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"payment",
+								"1"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "null",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "null",
+									"disabled": true
+								},
+								{
+									"key": "role",
+									"value": "null",
+									"disabled": true
+								},
+								{
+									"key": "pageNumber",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Payment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"policyId\": 2,\r\n    \"amount\": 160500\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/payment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"payment"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Claim",
+			"item": [
+				{
+					"name": "Get Claim",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/claim/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"claim",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Submit Claim",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"policyId\": 2,\r\n  \"claimAmount\": 50000.00,\r\n  \"incidentDateTime\": \"2025-12-08T09:30:00\",\r\n  \"description\": \"Vehicle collision at unexpected intersection\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/claim",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"claim"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
