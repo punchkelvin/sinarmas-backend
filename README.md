@@ -19,9 +19,9 @@ The system consists of **6 distinct microservices** and **1 shared library**:
 | Service | Port (Docker) | Port (Host) | Description                                         |
 | :--- |:--------------|:------------|:----------------------------------------------------|
 | **API Gateway** | `8080`        | `8080`      | Single entry point, routes traffic.                 |
-| **Product Service** | `8082`        | `8082`      | Catalog of insurance plans (Health, Vehicle, Life). |
-| **Customer Service** | `8083`        | `8083`      | User profiles (NIK, Address).                       |
-| **Policy Service** | `8084`        | `8084`      | Manages sales and active policies.                  |
+| **Product Service** | `8080`        | `8082`      | Catalog of insurance plans (Health, Vehicle, Life). |
+| **Customer Service** | `8080`        | `8083`      | User profiles (NIK, Address).                       |
+| **Policy Service** | `8080`        | `8084`      | Manages sales and active policies.                  |
 | **Payment Service** | `8080`        | `8085`      | Transaction processing.                             |
 | **Claim Service** | `8080`        | `8086`      | Validation and submission of insurance claims.      |
 | **Common Lib** | N/A           | N/A         | Shared DTOs, Utils, and Constants.                  |
